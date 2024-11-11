@@ -8,6 +8,9 @@ const Stories = () => {
         <h1>Loading....</h1>
         </>
     }
+    if (!hits || hits.length === 0) {
+      return <h1>No stories available</h1>;
+    }
   return (
     <>
     <div className='stories-div'>
