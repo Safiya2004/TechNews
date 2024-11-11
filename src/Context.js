@@ -1,7 +1,7 @@
 import React, { useReducer,useEffect } from "react";
 import { useContext } from 'react'
 import reducer from "./reducer";
-let API="http://hn.algolia.com/api/v1/search?";
+let API="https://hn.algolia.com/api/v1/search?query=&page=0";
 const initialState={
     isLoading:true, 
     query:"",
@@ -9,7 +9,9 @@ const initialState={
     page:0,
     hits:[],
 };
+//creating context
 const appContext=React.createContext();
+//creating  a provider for the context
 const AppProvider=({children})=>{
     const [state,dispatch]=useReducer(reducer,initialState);
     const fetchApiData=async (url)=>{
@@ -54,7 +56,9 @@ const AppProvider=({children})=>{
         </appContext.Provider>
     )
 }
+//creating  a custom hook for the global context 
 const useGlobalContext=()=>{
     return useContext(appContext);
 }
+//appProvider will be consumed by the consumer in index.js
 export {appContext,AppProvider,useGlobalContext};    
